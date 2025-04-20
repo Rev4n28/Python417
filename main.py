@@ -2493,4 +2493,125 @@ def outer(fn):
 
 # print("Вносим изменения в локальный репозиторий")
 
-print("Работа на новом устройстве")
+# print("Работа на новом устройстве")
+
+import re
+
+s = "Я ищу совпадения в 2025 году. \"И я их найду в 2 счё-та\". [6789]. H.ello_World."
+# reg = "\\."
+# reg = r"\."
+# reg = r"[12][0-9][0-9][0-9]"
+# reg = r"[А-яЁё]"
+# reg = r"[A-Z\[a-z\].-]"
+# reg = r"[^0-9]"
+# reg = r"\d"
+# reg = r"\D"
+# reg = r"\s"
+# reg = r"\S"
+# reg = r"\w"
+# reg = r"сов\B"
+# reg = r"\w*"
+# print(re.findall(reg, s))  # список, содержащий все совпадения
+# print(re.search(reg, s))  # месторасположение первого совпадения с шаблоном
+# # print(re.search(reg, s).span())
+# # print(re.search(reg, s).start())
+# # print(re.search(reg, s).end())
+# # print(re.search(reg, s).group())
+# print(re.match(reg, s))  # месторасположение первого совпадения с шаблоном в начале строки
+# print(re.split(reg, s))  # возвращает список, в котором строка разбита по шаблону.
+# print(re.sub(reg, "!", s, 1))  # возвращает список, в котором строка разбита по шаблону.
+# reg = r"\w*"
+# reg = r"^\w+\s\w+"
+# reg = r"\w+\.$"
+reg = r"я"
+
+
+# print(re.findall(reg, s, re.IGNORECASE))
+
+# st = "Час в 24-часовом формате от 00 до 23. 2021-06-15T21:45. Минуты, в диапазоне от 00 до 59. 2021-06-15T01:09."
+# reg1 = "[0-2][0-9]:[0-5][0-9]"
+# print(re.findall(reg1, st))
+
+# d = "Цифры: 7б, +17, --42, 0013, 0.3345.3890"
+# # print(re.findall(r"[-+]?\d+\.?\d*", d))
+# print(re.findall(r"[+-]?\d+[.\d]*", d))
+
+# d = "05-03-1987 # Дата рождения"
+#
+# print("Дата рождения: ", re.sub(r"\s#.*", "", d))
+# print("Дата рождения: ", re.sub(r"-", ".", d))
+# print("Дата рождения: ", re.sub(r"-", ".", re.sub(r"-", ".", d)))
+# # print("Дата рождения: ", "05.03.1987"))
+
+# st = "author=Пушкин А. С.; title = Евгений Онегин; price =200; year= 1831"
+# # reg1 = r"\w+\s*=\s*\w+\s*[\s\w.]*"
+# reg1 = r"\w+\s*=[^;]*"
+# print(re.findall(reg1, st))
+# print(re.split(r";\s+", st))
+
+# s1 = "12 сентября 2025 года 456543131"
+# # reg1 = r"\d{4}"
+# reg1 = r"\d{2,4}"
+# # reg1 = r"\d{,4}"
+# # reg1 = r"\d{2,}"
+# print(re.findall(reg1, s1))
+
+# st = "+7 499 456-45-78, +74994564578, 7 (499) 456 45 78, 74994564578"
+# reg1 = r"\+?7\d{10}"
+# print(re.findall(reg1, st))
+#
+# def validate_login(login):
+#     return re.findall(r"^[A-za-z0-9_-]{3,16}$", login)
+#
+#
+# print(validate_login("maasdss"))
+
+# print(re.findall(r"\w+", "12 + й"))
+# print(re.findall(r"\w+", "12 + й", flags=re.ASCII))
+
+# text = "hello world"
+# print(re.findall(r"\w\+", text, flags=re.DEBUG))
+
+
+# text = """
+# one
+# two
+# """
+# # print(re.findall(r"one.\w+", text))
+# # print(re.findall(r"one.\w+", text, re.DOTALL))
+#
+# print(re.findall(r"one$", text))
+# print(re.findall(r"one$", text, re.MULTILINE))
+
+
+# print(re.findall("""
+# [a-z._-]+   # part1
+# @           # @
+# [a-z.-]+    # part2
+# """, "test@mail.ru", re.VERBOSE))
+
+# text = """Python,
+# python,
+# PYTHON"""
+# reg1 = "(?mi)^python"
+# print(re.findall(reg1, text))
+
+# text = "<body>Пример жадного соответствия регулярных выражений</body>"
+# print(re.findall("<.*?>", text))
+
+#  *?, +?, ??
+# {m,n}?, {,n}?, {m,}?
+
+# s1 = "12 сентября 2025 года 456543131"
+# # reg1 = r"\d{4}"
+# # reg1 = r"\d{2,4}?"
+# # reg1 = r"\d{,4}"
+# reg1 = r"\d{2,}"
+# print(re.findall(reg1, s1))
+
+def password(a):
+    reg = "[A-z0-9-_@]{6,18}"
+    return print(re.findall(reg, a))
+
+
+password("my-p@ssw0rd")
