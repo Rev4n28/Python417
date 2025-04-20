@@ -2609,9 +2609,3 @@ reg = r"я"
 # reg1 = r"\d{2,}"
 # print(re.findall(reg1, s1))
 
-def password(a):
-    reg = "[A-z0-9-_@]{6,18}"
-    return print(re.findall(reg, a))
-
-
-password("my-p@ssw0rd")
