@@ -2497,7 +2497,7 @@ def outer(fn):
 
 import re
 
-s = "Я ищу совпадения в 2025 году. \"И я их найду в 2 счё-та\". [6789]. H.ello_World."
+# s = "Я ищу совпадения в 2025 году. \"И я их найду в 2 счё-та\". [6789]. H.ello_World."
 # reg = "\\."
 # reg = r"\."
 # reg = r"[12][0-9][0-9][0-9]"
@@ -2608,4 +2608,155 @@ reg = r"я"
 # # reg1 = r"\d{,4}"
 # reg1 = r"\d{2,}"
 # print(re.findall(reg1, s1))
+
+
+# s = "Петр, Ольга и Виталий отлично учатся!"
+# reg = "Петр|Ольга|Виталий|Виктор"
+# print(re.findall(reg, s))
+
+# s = "int = 4, float = 4.0f, double = 8.0, int"
+# # reg = r"int\s*=\s*\d[.\w+]*|float\s*=\s*\d[.\w+]*"
+# # reg = r"(?:int|float)\s*=\s*\d[.\w+]*"
+# reg = r"((int|float)\s*=\s*(\d[.\w+]*))"
+# print(re.findall(reg, s))
+# print(re.search(reg, s).groups(3))
+# m = re.search(reg, s)
+# print(m[0])
+# print(m[1])
+# print(m[2])
+# print(m[3])
+
+# s = "5 +7*2 -4"
+# reg = r"\s*([+*-])\s*"
+# print(re.split(reg, s))
+
+# a = "31-12-2021"
+# pattern = r"(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19[0-9][0-9]|20[0-9][0-9])"
+# print(re.findall(pattern, a))
+# print(re.search(pattern, a))
+
+# s = "Самолет прилетает 10/23/2025. Будем рады вас видеть после 10/24/2025"
+# reg = r"(\d{2})/(\d{2})/(\d{4})"
+# print(re.sub(reg, r"\2-\1-\3", s))
+
+
+#  Рекурсия
+
+# def elevator(n):
+#     if n == 0:
+#         print("Вы в подвале")
+#         return
+#     print("=>", n)
+#     elevator(n - 1)
+#     print(n, end=" ")
+#
+#
+# n1 = 5
+# elevator(n1)
+
+# def sum_list(lst):
+#     res = 0
+#     for i in lst:
+#         res += i
+#     return res
+
+# def sum_list(lst):  # [1, 3, 5, 7, 9]
+#     if len(lst) == 1:
+#         return lst[0]  # 9
+#     else:
+#         return lst[0] + sum_list(lst[1:])  # 1 + 3 + 5 + 7 +
+#
+#
+# print(sum_list([1, 3, 5, 7, 9]))
+
+
+# def to_str(n, base):
+#     convert = "0123456789ABCDEF"
+#     if n < base:
+#         return convert[n]
+#     else:
+#         return to_str(n // base, base) + convert[n % base]
+#
+#
+# print(to_str(254, 10))
+
+# names = ["Adam", ["Bob", ["Chet", "Cat"], "Bard", "Bert"], "Alex", ["Bea", "Bill"], "Ann"]
+#
+# print(names[0])
+# print(isinstance(names[0], list))
+# print(names[1])
+# print(isinstance(names[1], list))
+# print(names[1][1])
+# print(isinstance(names[1][1], list))
+# print(names[1][1][0])
+# print(isinstance(names[1][1][0], list))
+
+# names = ["Adam", ["Bob", ["Chet", "Cat"], "Bard", "Bert"], "Alex", ["Bea", "Bill"], "Ann"]
+#
+# def count_item(item_list):
+#     count = 0
+#     for item in item_list:
+#         if isinstance(item, list):
+#             count += count_item(item)
+#         else:
+#             count += 1
+#     return count
+#
+# print(count_item(names))
+
+#  файлы
+
+# f = open("text.txt")
+# f = open(r"C:\Users\Rev4n\OneDrive\Рабочий стол\Домашка\Занятия\Занятие 19.04.25-\pythonProject\text.txt")
+# print(f)
+# print(*f)
+# print(f.name)
+# print(f.mode)
+# print(f.encoding)
+# f.close()
+# print(f.closed)
+
+# f = open("text.txt")
+# print(f.read(3))
+# print(f.read())
+# f.close()
+
+# f = open("text1.txt", "w")
+# f.write("This is line1\n""This is line2\n""This is line3\n")
+# f.close()
+
+
+# f = open("text1.txt", "r")
+# print(f.readline())
+# print(f.readline(8))
+# print(f.readline())
+# print(f.readline())
+# f.close()
+
+# f = open("text1.txt", "r")
+# print(f.readlines(16))
+# print(f.readlines())
+# f.close()
+
+# f = open("text1.txt", "r")
+# for line in f:
+#     print(line)
+# f.close()
+
+# f = open("xyz.txt", "w")
+# f.write("Hello\nWorld")
+# f.close()
+#
+# lines = ["This is line1\n", "This is line2\n", "This is line3\n"]
+# f = open("xyz.txt", "a")
+# # f.write("\nNew text")
+# f.writelines(lines)
+# f.close()
+
+# f = open("xyz.txt", "w")
+# lst = [str(i) for i in range(10, 1000, 10)]
+# print(lst)
+# for ind in lst:
+#     f.write(ind + "\t")
+# f.close()
 

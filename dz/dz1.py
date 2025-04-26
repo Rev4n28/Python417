@@ -1,7 +1,14 @@
-import re
-def password(a):
-    reg = "[A-z0-9-_@]{6,18}"
-    return print(re.findall(reg, a))
+s = [-2, 3, 8, -11, -4, 6]
 
 
-password("my-p@ssw0rd")
+def minus(lst):
+    if len(lst) == 0:
+        return 0
+    else:
+        if lst[0] < 0:
+            return 1 + minus(lst[1:])
+        else:
+            return minus(lst[1:])
+
+
+print(minus(s))
