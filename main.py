@@ -2525,6 +2525,7 @@ def outer(fn):
 # reg = r"\w+\.$"
 reg = r"я"
 
+
 # print(re.findall(reg, s, re.IGNORECASE))
 
 # st = "Час в 24-часовом формате от 00 до 23. 2021-06-15T21:45. Минуты, в диапазоне от 00 до 59. 2021-06-15T01:09."
@@ -2943,25 +2944,490 @@ reg = r"я"
 
 # with open("Test.txt", "w") as f:
 #     f.write("Замена строки в текстовом файле;\nизменить строку в списке;\nзаписать список в файл;")
+#
+# print("Обмен местами двух строк в файле Тест:")
+# f = open("Test.txt", "r")
+# print(f.read())
+# f.close()
+# print()
+#
+# pos1 = int(input("pos1 = "))
+# pos2 = int(input("pos2 = "))
+# if pos1 < 0 or pos2 < 0 or pos1 > 2 or pos2 > 2:
+#     print("Недопустимый индекс строки")
+# else:
+#     f1 = open("Test.txt", "r")
+#     lst = f1.read().split(sep="\n")
+#     print(lst)
+#     lst[pos1], lst[pos2] = lst[pos2], lst[pos1]
+#     print(lst)
+#     f1.close()
+#
+#     f2 = open("Test.txt", "w")
+#     f2.write(f"{lst[0]}\n{lst[1]}\n{lst[2]}\n")
+#     f2.close()
 
-print("Обмен местами двух строк в файле Тест:")
-f = open("Test.txt", "r")
-print(f.read())
-f.close()
-print()
+# import os
+# import time
+#
+# path = r"main.py"
+# kb = os.path.getsize(path)
+# print(kb // 1024)
+# atime = os.path.getatime(path)  # дата последнего доступа к документу
+# ctime = os.path.getctime(path)  # возвращает время создания файла или время последнего изменения
+# mtime = os.path.getmtime(path)  # возвращает время последнего изменеия файла
+#
+# print(atime)
+# print(ctime)
+# print(mtime)
+# print(time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(atime)))
+# print(time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(ctime)))
+# print(time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(mtime)))
 
-pos1 = int(input("pos1 = "))
-pos2 = int(input("pos2 = "))
-if pos1 < 0 or pos2 < 0 or pos1 > 2 or pos2 > 2:
-    print("Недопустимый индекс строки")
-else:
-    f1 = open("Test.txt", "r")
-    lst = f1.read().split(sep="\n")
-    print(lst)
-    lst[pos1], lst[pos2] = lst[pos2], lst[pos1]
-    print(lst)
-    f1.close()
 
-    f2 = open("Test.txt", "w")
-    f2.write(f"{lst[0]}\n{lst[1]}\n{lst[2]}\n")
-    f2.close()
+# class Point:
+#     """Класс для предоставления коордиант точек на плоскости"""
+#     x = 1
+#     y = 2
+#
+#     def set_coords(self, x1, y1):
+#         self.x = x1
+#         self.y = y1
+#         print(self.__dict__)
+#
+#
+# p1 = Point()
+# # p1.x = 100
+# # p1.y = 200
+# # print(p1.x, p1.y)
+# p1.set_coords(100, 200)
+# # print(p1.__dict__)
+# Point.set_coords(p1,111, 222)
+# p2 = Point()
+# # print(p2.x, p2.y)
+# p2.set_coords(10, 20)
+#
+#
+# # print(Point.__dict__)
+# # print(Point.__doc__)
+
+# class Human:
+#     name = "name"
+#     birthday = "00.00.0000"
+#     phone = "00-00-00"
+#     country = "country"
+#     city = "city"
+#     address = "street, house"
+#
+#     def print_info(self):
+#         print(" Персональные данные ".center(40, "*"))
+#         print(f"Имя: {self.name}\nДата рождения: {self.birthday}\nНомер телефона: {self.phone}\n"
+#               f"Страна: {self.country}\nГород: {self.city}\nДомашний адрес: {self.address}")
+#         print("=" * 40)
+#
+#     def input_info(self, first_name, birthday, phone, country, city, address):
+#         self.name = first_name
+#         self.birthday = birthday
+#         self.phone = phone
+#         self.country = country
+#         self.city = city
+#         self.address = address
+#
+#     def set_name(self, name):
+#         self.name = name
+#
+#     def get_name(self):
+#         return self.name
+#
+#
+# h1 = Human()
+# h1.print_info()
+# h1.input_info("Юля", "25.05.1986", "45-46-98", "Россия",
+#               "Москва", "Чистопрудный бульвар, 1А")
+# h1.print_info()
+#
+# h1.set_name("Юлия")
+# h1.print_info()
+# print(h1.get_name())
+
+# class Person:
+#     skill = 10  # статическое свойство
+#
+#     def __init__(self, name, surname):
+#         self.name = name  # динамическое свойство
+#         self.surname = surname
+#         print("Инициализатор")
+#
+#     def __del__(self):
+#         print("Финализатор (деструктор)")
+#
+#     def print_info(self):
+#         print("\nДанные сотрудника:", self.name, self.surname)
+#
+#     def add_skill(self, k):
+#         self.skill += k
+#         print("Квалификация сотрудника:", self.skill)
+#
+#
+# p1 = Person("Виктор", "Резник")
+# p1.print_info()
+# p1.add_skill(3)
+# # del p1
+# p1 = 5
+#
+# p2 = Person("Анна", "Долгих")
+# p2.print_info()
+# p2.add_skill(2)
+
+# class Point:
+#     count = 0
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#         Point.count += 1
+#
+#
+# p1 = Point(1, 2)
+# p2 = Point(10, 20)
+# p3 = Point(100, 200)
+# print(Point.count)
+# print(p1.count)
+# print(p2.count)
+# print(p3.count)
+
+# print(p1.__dict__)
+# print(p2.__dict__)
+# print(p3.__dict__)
+
+# class Robot:
+#     k = 0
+#
+#     def say_hi(self):
+#         print("Приветствую! Меня зовут:", self.name)
+#
+#     def __init__(self, name):
+#         self.name = name
+#         print("Инициализация робота:", self.name)
+#         Robot.k += 1
+#
+#     def __del__(self):
+#         print(self.name, "выключается!")
+#         Robot.k -= 1
+#
+#         if Robot.k == 0:
+#             print(self.name, "был последним")
+#         else:
+#             print("Работающих роботов осталось:", Robot.k)
+#
+#
+# droid1 = Robot("R2-D2")
+# droid1.say_hi()
+# print("Численность роботов", Robot.k)
+#
+# droid2 = Robot("C3P0")
+# droid2.say_hi()
+# print("Численность роботов", Robot.k)
+#
+# droid3 = Robot("P-5C0")
+# droid3.say_hi()
+# print("Численность роботов", Robot.k)
+#
+# print("\nЗдесь роботы могут проделать какую-то работу.\n")
+#
+# print("Роботы закончили свою работу. Давайте их выключим.")
+#
+# del droid1, droid2, droid3
+#
+# print("Численность роботов", Robot.k)
+
+
+# class Point:
+#     __slots__ = "__x", "__y", "z"
+#
+#     def __init__(self, x, y):
+#         self.__x = self.__y = 0
+#         if Point.__check_value(x) and Point.__check_value(y):
+#             self.__x = x
+#             self.__y = y
+#
+#     def get_coord(self):
+#         return self.__x, self.__y
+#
+#     def __check_value(c):
+#         return isinstance(c, (int, float))
+#
+#     def set_coord(self, x, y):
+#         # if (isinstance(x, int) or isinstance(x, float)) and (isinstance(y, int) or isinstance(y, float)):
+#         if Point.__check_value(x) and Point.__check_value(y):
+#             self.__x = x
+#             self.__y = y
+#         else:
+#             print("Координаты должны быть числами")
+#
+#     def set_z(self, z):
+#         if Point.__check_value(z):
+#             self.z = z
+#         else:
+#             print("Координаты должны быть числами")
+#
+#
+# p1 = Point(5, 10)
+# p1.z = 3
+# print(p1.z)
+# # print(p1.__dict__)
+# # p1.__x = "abc"
+# # p1.__y = "qwe"
+# # p1.set_coord(1, 2.5)
+# # print(p1.get_z())
+# # p1.z = "zzz111"
+# print(p1.get_coord())
+# # p1._Point__x = 111
+# # print(p1.__dict__)
+
+
+# class Point:
+#     def __init__(self, x, y):
+#         self.__x = x
+#         self.__y = y
+#
+#     @property  # геттер
+#     def x(self):
+#         print("Вызов __get_x")
+#         return self.__x
+#
+#     @x.setter  # сеттер
+#     def x(self, x):
+#         if isinstance(x, int):
+#             self.__x = x
+#         else:
+#             print("Некорректный тип данных")
+#
+#     @x.deleter
+#     def x(self):
+#         print("Удаление свойства")
+#         del self.__x
+#
+#     # def __del_x(self):
+#     #     print("Удаление свойства")
+#     #     del self.__x
+#     #
+#     # x = property(__get_x, __set_x, __del_x)
+#
+#
+# p1 = Point(5, 10)
+# # print(p1.x)
+# p1.x = "50"
+# print(p1.x)
+# # del p1.x
+
+# class KgToPounds:
+#     def __init__(self, kg):
+#         self.__kg = kg
+#
+#     @property
+#     def kg(self):
+#         return self.__kg
+#
+#     @kg.setter
+#     def kg(self, new_kg):
+#         if isinstance(new_kg, (int, float)):
+#             self.__kg = new_kg
+#         else:
+#             print("Килограммы задаются только числами")
+#
+#     def to_pound(self):
+#         return self.__kg * 2.205
+#
+#
+# w = KgToPounds(12)
+# print(w.kg, "кг =>", w.to_pound(), "фунтов")
+# w.kg = 41
+# print(w.kg, "кг =>", w.to_pound(), "фунтов")
+# w.kg = "десять"
+# print(w.kg, "кг =>", w.to_pound(), "фунтов")
+
+
+# class Person:
+#     def __init__(self, name, age):
+#         self.__name = name
+#         self.__age = age
+#
+#     @property
+#     def name(self):
+#         return self.__name
+#
+#     @name.setter
+#     def name(self, name1):
+#         if isinstance(name1, str):
+#             self.__name = name1
+#         else:
+#             print("Имя не может быть числом")
+#
+#     @property
+#     def age(self):
+#         return self.__age
+#
+#     @age.setter
+#     def age(self, age1):
+#         if isinstance(age1, int):
+#             self.__age = age1
+#         else:
+#             print("Возраст должен быть представлен целым числом")
+#
+#     @name.deleter
+#     def name(self):
+#         del self.__name
+#
+#     @age.deleter
+#     def age(self):
+#         del self.__age
+#
+#
+# person = Person("Irina", 26)
+# print(person.__dict__)
+# person.name = "Igor"
+# person.age = 31
+# print(person.__dict__)
+# del person.name
+# print(person.__dict__)
+# del person.age
+# print(person.__dict__)
+
+# class Point:
+#     __count = 0
+#
+#     def __init__(self, x=0, y=0):
+#         self.__x = x
+#         self.y = y
+#         Point.__count += 1
+#
+#     # @staticmethod
+#     def get_count():
+#         return Point.__count
+#
+#     get_count111 = staticmethod(get_count)
+#
+#
+# p1 = Point()
+# p2 = Point()
+# p3 = Point()
+# # print(Point.__dict__)
+# print(Point.get_count111())
+
+# def inc(x):
+#     return x + 1
+#
+# def dec(x):
+#     return x - 1
+#
+#
+# print(inc(10), dec(10))
+
+# class Change:
+#     def __init__(self, name):
+#         self.name = name
+#     @staticmethod
+#     def inc(x):
+#         return x + 1
+#
+#     @staticmethod
+#     def dec(x):
+#         return x - 1
+#
+#     def print_info(self):
+#         print("Печать информации", self.name)
+#
+#
+# print(Change.inc(10), Change.dec(10))
+
+# class Numbers:
+#     @staticmethod
+#     def max(a, b, c, d):
+#         mx = a
+#         if b > mx:
+#             mx = b
+#         if c > mx:
+#             mx = c
+#         if d > mx:
+#             mx = d
+#         return mx
+#
+#     @staticmethod
+#     def min(*args):
+#         mn = args[0]
+#         for i in args:
+#             if i < mn:
+#                 mn = i
+#         return mn
+#
+#     @staticmethod
+#     def average(*args):
+#         return sum(args) / len(args)
+#
+#     @staticmethod
+#     def factorial(n):
+#         fact = 1
+#         for i in range(1, n+1):
+#             # print(i, end=" ")
+#             fact *= i
+#         return fact
+#
+#
+# print(Numbers.max(3, 5, 7, 9))
+# print(Numbers.min(3, 5, 7, 9))
+# print(Numbers.average(3, 5, 7, 9))
+# print(Numbers.factorial(5))
+
+
+class Date:
+    def __init__(self, day, month, year):
+        self.day = day
+        self.month = month
+        self.year = year
+
+    def string_to_db(self):
+        return f"{self.year}-{self.month}-{self.day}"
+
+    @classmethod
+    def from_string(cls, string_date):
+        day, month, year = map(int, string_date.split("."))
+        # date = Date(day, month, year)
+        return cls(day, month, year)
+
+    @staticmethod
+    def is_date_valid(string_date):
+        if string_date.count(".") == 2:
+            day, month, year = map(int, string_date.split("."))
+            return day <= 31 and month <= 12 and year <= 3999
+
+
+dates = [
+    "23.10.2025",
+    "30-12-2025",
+    "01.01.2025",
+    "12.31.2025",
+]
+
+for i in dates:
+    if Date.is_date_valid(i):
+        date1 = Date.from_string(i)
+        print(date1.string_to_db())
+    else:
+        print("Неправильная дата или формат строки с датой")
+
+
+
+
+# date1 = Date.from_string("23.10.2025")
+# print(date1.string_to_db())
+
+# string_date = "23.10.2025"
+# day, month, year = map(int, string_date.split("."))
+# print(day, month, year)
+#
+# date = Date(day, month, year)
+# print(date.string_to_db())
+# "23.10.2025" => 2025-10-23
+
+
