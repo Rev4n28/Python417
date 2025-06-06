@@ -1,4 +1,4 @@
-from math import sqrt
+from geometry import sqrt
 
 
 class Area:
