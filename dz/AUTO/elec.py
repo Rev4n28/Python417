@@ -1,7 +1,9 @@
-from auto import Auto
+# from AUTO.auto import Auto
+from AUTO import auto
 
 
-class Electro(Auto):
+# class Electro(Auto):
+class Electro(auto.Auto):
     def print_info(self):
         super().print_info()
         print("Этот автомобиль имеет мощность 100%")
