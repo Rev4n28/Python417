@@ -5735,7 +5735,7 @@ reg = r"я"
 # if __name__ == '__main__':
 #     run()
 
-import sqlite3
+# import sqlite3
 
 # con = sqlite3.connect("profile.db")
 # cur = con.cursor()
@@ -5745,15 +5745,161 @@ import sqlite3
 #
 # con.close()
 
-with sqlite3.connect("profile.db") as con:
+# with sqlite3.connect("profile.db") as con:
+#     cur = con.cursor()
+#     cur.execute("""CREATE TABLE IF NOT EXISTS users(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     name TEXT NOT NULL,
+#     summa REAL,
+#     date TEXT
+#     )
+#     """)
+#
+#     cur.execute("DROP TABLE users")
+
+import sqlite3
+
+
+# with sqlite3.connect("users.db") as con:
+#     cur = con.cursor()
+#     # cur.execute("""CREATE TABLE IF NOT EXISTS person(
+#     # id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     # name TEXT NOT NULL,
+#     # phone BLOB NOT NULL DEFAULT "+79991234567",
+#     # age INTEGER CHECK(age>0 AND age<100),
+#     # email TEXT UNIQUE
+#     # )""")
+# переименование таблицы
+# cur.execute("""
+# ALTER TABLE person
+# RENAME TO person_table;
+# """)
+
+# добавление нового столбца
+# cur.execute("""
+#     ALTER TABLE person_table
+#     ADD COLUMN address TEXT;
+#     """)
+
+# переименование столбца
+# cur.execute("""
+#         ALTER TABLE person_table
+#         RENAME COLUMN address TO home_adress;
+#         """)
+
+
+#  удаление столбца
+# cur.execute("""
+#         ALTER TABLE person_table
+#         DROP COLUMN home_adress;
+#         """)
+
+
+# удаление таблицы
+# cur.execute("""
+#         DROP TABLE person_table;
+#         """)
+
+# with sqlite3.connect("db_3.db") as con:
+#     cur = con.cursor()
+#     cur.execute("""
+#         SELECT *
+#         FROM T1
+#         LIMIT 2, 5;
+#     """)
+#
+#     # for res in cur:
+#     #     print(res)
+#
+#     res2 = cur.fetchall()
+#     print(res2)
+#
+#     res4 = cur.fetchmany(2)
+#     print(res4)
+#
+#     res3 = cur.fetchone()
+#     print(res3)
+
+# def sum1(args):
+#     res = 0
+#     for i in args:
+#         res += i
+#     return res
+#
+#
+# lst = ['a', 'b', 'c']
+# # lst = [5, 9, 7]
+# print(sum1(lst))
+
+# import sqlite3
+
+# with sqlite3.connect("person.db") as con:
+#     cur = con.cursor()
+#     cur.execute("""CREATE TABLE IF NOT EXISTS companies(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     name TEXT NOT NULL)""")
+#
+#     cur.execute("""CREATE TABLE IF NOT EXISTS users(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     name TEXT NOT NULL,
+#     age INTEGER,
+#     company_id INTEGER,
+#     FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE SET NULL
+#     )""")
+
+
+# with sqlite3.connect("book.db") as con:
+#     cur = con.cursor()
+#     cur.execute("""CREATE TABLE IF NOT EXISTS books(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     title TEXT NOT NULL,
+#     count_page INTEGER NOT NULL CHECK(count_page > 0),
+#     price REAL CHECK(price > 0)
+#     )""")
+#
+#     cur.execute("""CREATE TABLE IF NOT EXISTS author(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     name TEXT NOT NULL,
+#     age INTEGER CHECK (age > 16)
+#     )""")
+#
+#     cur.execute("""CREATE TABLE IF NOT EXISTS author_books(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     books_id INTEGER NOT NULL,
+#     author_id INTEGER NOT NULL,
+#     FOREIGN KEY (books_id) REFERENCES books(id),
+#     FOREIGN KEY (author_id) REFERENCES author(id)
+#     )""")
+
+# ================ ДОМАШНЕЕ ЗАДАНИЕ 22.06.2025 ==========================
+
+import sqlite3
+
+with sqlite3.connect("education.db") as con:
     cur = con.cursor()
-    cur.execute("""CREATE TABLE IF NOT EXISTS users(
+    cur.execute("""CREATE TABLE IF NOT EXISTS student(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    surname TEXT NOT NULL,
     name TEXT NOT NULL,
-    summa REAL,
-    date TEXT
-    )
-    """)
+    patronymic TEXT NOT NULL,
+    age INTEGER NOT NULL CHECK(age >= 17 AND age <= 50),
+    [group] TEXT NOT NULL,
+    FOREIGN KEY ([group]) REFERENCES groups(id) ON DELETE RESTRICT
+    )""")
 
-    cur.execute("DROP TABLE users")
+    cur.execute("""CREATE TABLE IF NOT EXISTS groups(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        group_name TEXT NOT NULL
+        )""")
 
+    cur.execute("""CREATE TABLE IF NOT EXISTS association(
+            lesson_id INTEGER NOT NULL,
+            group_id INTEGER NOT NULL,
+            FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE RESTRICT,
+            FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE RESTRICT
+            )""")
+
+    cur.execute("""CREATE TABLE IF NOT EXISTS lessons(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            lesson_title TEXT NOT NULL
+            )""")
