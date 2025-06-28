@@ -5895,6 +5895,7 @@ with sqlite3.connect("education.db") as con:
     cur.execute("""CREATE TABLE IF NOT EXISTS association(
             lesson_id INTEGER NOT NULL,
             group_id INTEGER NOT NULL,
+            PRIMARY KEY (group_id, lesson_id)
             FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE RESTRICT,
             FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE RESTRICT
             )""")
@@ -5903,3 +5904,5 @@ with sqlite3.connect("education.db") as con:
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             lesson_title TEXT NOT NULL
             )""")
+
+    
