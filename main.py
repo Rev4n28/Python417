@@ -5759,7 +5759,6 @@ reg = r"я"
 
 import sqlite3
 
-
 # with sqlite3.connect("users.db") as con:
 #     cur = con.cursor()
 #     # cur.execute("""CREATE TABLE IF NOT EXISTS person(
@@ -5873,36 +5872,370 @@ import sqlite3
 
 # ================ ДОМАШНЕЕ ЗАДАНИЕ 22.06.2025 ==========================
 
+# import sqlite3
+#
+# with sqlite3.connect("education.db") as con:
+#     cur = con.cursor()
+#     cur.execute("""CREATE TABLE IF NOT EXISTS student(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     surname TEXT NOT NULL,
+#     name TEXT NOT NULL,
+#     patronymic TEXT NOT NULL,
+#     age INTEGER NOT NULL CHECK(age >= 17 AND age <= 50),
+#     [group] TEXT NOT NULL,
+#     FOREIGN KEY ([group]) REFERENCES groups(id) ON DELETE RESTRICT
+#     )""")
+#
+#     cur.execute("""CREATE TABLE IF NOT EXISTS groups(
+#         id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         group_name TEXT NOT NULL
+#         )""")
+#
+#     cur.execute("""CREATE TABLE IF NOT EXISTS association(
+#             lesson_id INTEGER NOT NULL,
+#             group_id INTEGER NOT NULL,
+#             PRIMARY KEY (group_id, lesson_id)
+#             FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE RESTRICT,
+#             FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE RESTRICT
+#             )""")
+#
+#     cur.execute("""CREATE TABLE IF NOT EXISTS lessons(
+#             id INTEGER PRIMARY KEY AUTOINCREMENT,
+#             lesson_title TEXT NOT NULL
+#             )""")
+#
+#
+
 import sqlite3
 
-with sqlite3.connect("education.db") as con:
-    cur = con.cursor()
-    cur.execute("""CREATE TABLE IF NOT EXISTS student(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    surname TEXT NOT NULL,
-    name TEXT NOT NULL,
-    patronymic TEXT NOT NULL,
-    age INTEGER NOT NULL CHECK(age >= 17 AND age <= 50),
-    [group] TEXT NOT NULL,
-    FOREIGN KEY ([group]) REFERENCES groups(id) ON DELETE RESTRICT
-    )""")
+# cars_list = [
+#     ("BMW", 54000),
+#     ("Chevrolet", 46000),
+#     ("Daewoo", 38000),
+#     ("Citroen", 29000),
+#     ("Honda", 33000),
+# ]
+#
+# with sqlite3.connect("automobile.db") as con:
+#     cur = con.cursor()
+#     cur.execute("""
+#     CREATE TABLE IF NOT EXISTS cars(
+#         car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         model TEXT,
+#         price INTEGER
+#     )""")
 
-    cur.execute("""CREATE TABLE IF NOT EXISTS groups(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        group_name TEXT NOT NULL
-        )""")
+# cur.execute("INSERT INTO cars VALUES(1, 'Renault', 22000)")
+# cur.execute("INSERT INTO cars VALUES(2, 'Volvo', 29000)")
+# cur.execute("INSERT INTO cars VALUES(3, 'Mercedes', 57000)")
+# cur.execute("INSERT INTO cars VALUES(4, 'Bentley', 35000)")
+# cur.execute("INSERT INTO cars VALUES(5, 'Audi', 52000)")
+# for car in cars_list:
+#     cur.execute("INSERT INTO cars VALUES(NULL, ?, ?)", car)
 
-    cur.execute("""CREATE TABLE IF NOT EXISTS association(
-            lesson_id INTEGER NOT NULL,
-            group_id INTEGER NOT NULL,
-            PRIMARY KEY (group_id, lesson_id)
-            FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE RESTRICT,
-            FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE RESTRICT
-            )""")
+# cur.executemany("INSERT INTO cars VALUES(NULL, ?, ?)", cars_list)
+# cur.execute("UPDATE cars SET price = :Price WHERE model LIKE 'B%'", {"Price": 0})
 
-    cur.execute("""CREATE TABLE IF NOT EXISTS lessons(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            lesson_title TEXT NOT NULL
-            )""")
+# cur.executescript("""
+# DELETE FROM cars WHERE model LIKE 'B%';
+# UPDATE cars SET price = price + 100;1
+# """)
 
-    
+# con.commit()
+# con.close()
+
+
+# con = None
+# try:
+#     con = sqlite3.connect("automobile.db")
+#     cur = con.cursor()
+#     cur.executescript("""
+#     BEGIN;
+#     INSERT INTO cars VALUES(NULL, 'Renault', 22000);
+#     UPDATE cars2 SET price = price + 100;
+#     """)
+#     con.commit()
+# except sqlite3.Error as e:
+#     if con:
+#         con.rollback()
+#     print("Ошибка выполнения запроса")
+# finally:
+#     if con:
+#         con.close()
+
+# with sqlite3.connect("automobile.db") as con:
+#     con.row_factory = sqlite3.Row
+#     cur = con.cursor()
+#     cur.executescript("""
+#     CREATE TABLE IF NOT EXISTS cars(
+#         car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         model TEXT,
+#         price INTEGER
+#     );
+#     CREATE TABLE IF NOT EXISTS cost(
+#         name TEXT, tr_in INTEGER, buy INTEGER
+#     );
+#     """)
+
+# cur.execute("INSERT INTO cars VALUES(NULL, 'Запорожец', 1000)")
+# last_id = cur.lastrowid
+# buy_id = 2
+# cur.execute("INSERT INTO cost VALUES('Илья', ?, ?)", (last_id, buy_id))
+
+# cur.execute("SELECT model, price FROM cars")
+# for res in cur:
+#     print(res['model'], res['price'])
+
+# print(cur.fetchall())
+# print(cur.fetchone())
+# print(cur.fetchmany(5))
+# print(cur.fetchall())
+
+# def read_ava(n):
+#     try:
+#         with open(f"avatars/{n}.png", "rb") as f:
+#             return f.read()
+#     except IOError as e:
+#         print(e)
+#         return False
+#
+#
+# def write_ava(name, data):
+#     try:
+#         with open(name, "wb") as f:
+#             f.write(data)
+#     except IOError as e:
+#         print(e)
+#     #     return False
+#     # return True
+#
+#
+# with sqlite3.connect("automobile.db") as con:
+#     con.row_factory = sqlite3.Row
+#     cur = con.cursor()
+#     cur.executescript("""
+#     CREATE TABLE IF NOT EXISTS users(
+#         name TEXT,
+#         ava BLOB,
+#         score INTEGER
+#     );""")
+#
+#     # img = read_ava(1)
+#     # if img:
+#     #     binary = sqlite3.Binary(img)
+#     #     cur.execute("INSERT INTO users VALUES('Илья', ?, 1000)", (binary,))
+#
+#     cur.execute("SELECT ava FROM users")
+#     img = cur.fetchone()['ava']
+#     write_ava("out.png", img)
+
+# with sqlite3.connect("automobile.db") as con:
+#     cur = con.cursor()
+#
+#     with open("sql_dump.sql", "w") as f:
+#         for spl in con.iterdump():
+#             f.write(spl)
+# with sqlite3.connect("cars.db") as con:
+#     cur = con.cursor()
+#
+#     with open("sql_dump.sql", "r") as f:
+#         sql = f.read()
+#         cur.executescript(sql)
+
+# ========================================================
+
+# import os
+# from models.database import DATABASE_NAME
+# import create_database as db_creator
+#
+# if __name__ == '__main__':
+#     db_is_creator = os.path.exists(DATABASE_NAME)
+#     if not db_is_creator:
+#         db_creator.create_database()
+
+# ========================================================
+#
+# from jinja2 import Template
+
+# name = "Игорь"
+# age = 28
+#
+# tm = Template("Мне {{ a*2 }} лет. Меня зовут {{ n.upper() }}.")
+# msg = tm.render(n=name, a=age)
+#
+# print(msg)
+
+
+# per = {'name': 'Игорь', 'age': 20}
+#
+# tm = Template("Мне {{ p.age }} лет. Меня зовут {{ p['name'] }}.")
+# msg = tm.render(p=per)
+#
+# print(msg)
+
+
+# class Person:
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#     def get_age(self):
+#         return self.age
+#
+#
+# per = Person('Игорь',20)
+#
+# tm = Template("Мне {{ p.get_age() }} лет. Меня зовут {{ p['name'] }}.")
+# msg = tm.render(p=per)
+#
+# print(msg)
+
+# cities = [
+#     {'id': 1, 'city': 'Москва'},
+#     {'id': 2, 'city': 'Смоленск'},
+#     {'id': 3, 'city': 'Минск'},
+#     {'id': 4, 'city': 'Сочи'},
+#     {'id': 5, 'city': 'Ярославль'},
+# ]
+#
+# link = """<select>
+#     {% for c in cities %}
+#         {% if c.id > 3 %}
+#             <option> value="{{ c['id'] }}">{{ c['city'] }}</option>
+#         {% elif c.city == 'Москва' %}
+#             <option>{{ c['city'] }}</option>
+#         {% else %}
+#             {{c['city']}}
+#         {% endif %}
+#     {% endfor %}
+# </select>"""
+#
+# tm = Template(link)
+# msg = tm.render(cities=cities)
+#
+# print(msg)
+
+# menu = [
+#     {'href': '/index', 'link': 'Главная'},
+#     {'href': '/news', 'link': 'Новости'},
+#     {'href': '/about', 'link': 'О компании'},
+#     {'href': '/shop', 'link': 'Магазин'},
+#     {'href': '/contacts', 'link': 'Контакты'},
+# ]
+#
+# link = """<ul>
+#     {% for i in menu %}
+#         {% if i.link == 'Главная' %}
+#         <li><a href='{{ i['href'] }}' class='active'>{{i['link']}}'></a></li>
+#         {% else %}
+#         <li><a href='{{ i['href'] }}>{{i['link']}}'></a></li>
+#         {% endif %}
+#     {% endfor %}
+# </ul>"""
+#
+# tm = Template(link)
+# msg = tm.render(menu=menu)
+#
+# print(msg)
+
+# cars = [
+#     {'model': 'Audi', 'price': 23000},
+#     {'model': 'Skoda', 'price': 17300},
+#     {'model': 'Renault', 'price': 44200},
+#     {'model': 'Wolksvagen', 'price': 31300},
+# ]
+
+# cars = [4, 5, 6, 7, 8, 9, 10]
+# tpl = "{{ cs | sum(attribute='price') }}"
+# tpl = "{{ cs | sum }}"
+
+# tpl = "{{ (cs | max(attribute='price')).model }}"
+# tpl = "{{ cs | random }}"
+# tpl = "{{ cs | replace('model', 'brand') }}"
+#
+# tm = Template(tpl)
+# msg = tm.render(cs=cars)
+#
+# print(msg)
+#
+# print(cars)
+
+
+# persons = [
+#     {"name": "Алексей", "year": 18, "weight": 78.5},
+#     {"name": "Никита", "year": 28, "weight": 82.3},
+#     {"name": "Виталий", "year": 32, "weight": 94.1},
+# ]
+#
+# tpl = """
+# {% for u in users %}
+# {% filter upper %}{{ u.name }}{% endfilter %}
+# {% endfor %}
+# """
+#
+# tm = Template(tpl)
+# msg = tm.render(users=persons)
+#
+# print(msg)
+
+# html = """
+# {% macro fun_input(name, value='', type='test', size=20) %}
+#     <input type="{{ type }}" name="{{ name }}" value="{{ value }}", size={{ size }}>
+# {% endmacro %}
+#
+# <p>{{ fun_input('username', '', 'text') }}</p>
+# <p>{{ fun_input('email', 'Email', 'email') }}</p>
+# <p>{{ fun_input('password', 'Пароль', 'password') }}</p>
+# """
+#
+# tm = Template(html)
+# msg = tm.render()
+#
+# print(msg)
+
+
+# persons = [
+#     {"name": "Алексей", "year": 18, "weight": 78.5},
+#     {"name": "Никита", "year": 28, "weight": 82.3},
+#     {"name": "Виталий", "year": 32, "weight": 94.1},
+# ]
+#
+# html = """
+# {% macro list_users(list_of_user) %}
+#     <ul>
+#         {% for u in list_of_user %}
+#             <li>{{ u.name }} {{ caller(u) }} </li>
+#         {% endfor %}
+#     </ul>
+# {% endmacro %}
+#
+# {% call(user) list_users(users) %}
+#     <ul>
+#         <li>age: {{ user.year }}</li>
+#         <li>weight: {{ user.weight }}</li>
+#     </ul>
+# {% endcall %}
+#
+# """
+#
+# tm = Template(html)
+# msg = tm.render(users=persons)
+#
+# print(msg)
+
+
+from jinja2 import Environment, FileSystemLoader
+
+persons = [
+    {"name": "Алексей", "year": 18, "weight": 78.5},
+    {"name": "Никита", "year": 28, "weight": 82.3},
+    {"name": "Виталий", "year": 32, "weight": 94.1},
+]
+
+file_loader = FileSystemLoader('templates')
+env = Environment(loader=file_loader)
+
+tm = env.get_template('home.html')
+msg = tm.render(users=persons, title="About Jinja")
+
+print(msg)
