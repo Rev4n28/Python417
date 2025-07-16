@@ -2,5 +2,8 @@
 
 {% block content %}
 {{ super() }}
-Содержимое главной страницы
+
+<h2>{{ title }}</h2>
+<div>{{ post | safe }}</div>
+
 {% endblock %}
